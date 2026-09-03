@@ -21,4 +21,5 @@ class Player {
     Color color;
 
     bool onGround;
+    bool isJumping;
 };

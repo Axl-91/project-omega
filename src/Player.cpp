@@ -20,8 +20,17 @@ void Player::Update(float deltaTime, const Level &level) {
                      ? Physics::MAX_FALL_SPEED
                      : velocity.y;
 
-    if (IsKeyPressed(KEY_SPACE) && onGround)
-        velocity.y -= 500.0f;
+    if (IsKeyPressed(KEY_SPACE) && onGround) {
+        velocity.y = -Physics::JUMP_FORCE;
+        isJumping = true;
+    }
+
+    if (IsKeyReleased(KEY_SPACE) && isJumping &&
+        velocity.y < 0) {
+        velocity.y *= Physics::JUMP_CUT_MULTIPLIER;
+        isJumping = false;
+    }
+
     if (IsKeyDown(KEY_D))
         velocity.x += speed;
     if (IsKeyDown(KEY_A))
@@ -55,6 +64,7 @@ void Player::Update(float deltaTime, const Level &level) {
             if (moveY > 0) {
                 position.y = tile.y - size;
                 onGround = true;
+                isJumping = false;
             } else if (moveY < 0) {
                 position.y = tile.y + tile.height;
             }
