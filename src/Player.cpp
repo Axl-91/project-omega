@@ -1,6 +1,5 @@
 #include "Physics.hpp"
 #include "Player.hpp"
-#include <cstdio>
 #include <raylib.h>
 
 Player::Player(Vector2 startPosition, float size,
@@ -21,6 +20,8 @@ void Player::Update(float deltaTime, const Level &level) {
                      ? Physics::MAX_FALL_SPEED
                      : velocity.y;
 
+    if (IsKeyPressed(KEY_SPACE))
+        velocity.y -= 500.0f;
     if (IsKeyDown(KEY_D))
         velocity.x += speed;
     if (IsKeyDown(KEY_A))
