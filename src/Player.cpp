@@ -1,9 +1,12 @@
+#include "Physics.hpp"
 #include "Player.hpp"
+#include <cstdio>
 #include <raylib.h>
 
 Player::Player(Vector2 startPosition, float size,
                float speed, Color color)
-    : position(startPosition), size(size), speed(speed),
+    : position(startPosition), velocity({0, 0}),
+      onGround(false), size(size), speed(speed),
       color(color) {}
 
 void Player::Update(float deltaTime, const Level &level) {
@@ -12,19 +15,19 @@ void Player::Update(float deltaTime, const Level &level) {
     Rectangle playerRect = {position.x, position.y, size,
                             size};
 
-    float moveX = 0;
-    float moveY = 0;
+    velocity.x = 0;
+    velocity.y += Physics::GRAVITY * deltaTime;
+    velocity.y = velocity.y > Physics::MAX_FALL_SPEED
+                     ? Physics::MAX_FALL_SPEED
+                     : velocity.y;
 
     if (IsKeyDown(KEY_D))
-        moveX += distance;
+        velocity.x += speed;
     if (IsKeyDown(KEY_A))
-        moveX -= distance;
-    if (IsKeyDown(KEY_S))
-        moveY += distance;
-    if (IsKeyDown(KEY_W))
-        moveY -= distance;
+        velocity.x -= speed;
 
     // --- Horizontal movement + collision ---
+    float moveX = velocity.x * deltaTime;
     position.x += moveX;
     playerRect.x = position.x;
 
@@ -40,18 +43,23 @@ void Player::Update(float deltaTime, const Level &level) {
     }
 
     // --- Vertical movement + collision ---
+    float moveY = velocity.y * deltaTime;
     position.y += moveY;
     playerRect.y = position.y;
+
+    onGround = false;
 
     for (const Rectangle &tile : solids) {
         if (CheckCollisionRecs(playerRect, tile)) {
             if (moveY > 0) {
                 position.y = tile.y - size;
+                onGround = true;
             } else if (moveY < 0) {
                 position.y = tile.y + tile.height;
             }
+            playerRect.y = position.y;
+            velocity.y = 0;
         }
-        playerRect.y = position.y;
     }
 }
 

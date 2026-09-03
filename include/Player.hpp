@@ -13,7 +13,12 @@ class Player {
 
   private:
     Vector2 position;
+    Vector2 velocity;
+
     float size;
     float speed;
+
     Color color;
+
+    bool onGround;
 };

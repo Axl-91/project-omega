@@ -6,7 +6,7 @@
 
 class Level {
   public:
-    static const int TILE_SIZE = 50;
+    static const int TILE_SIZE = 25;
 
     Level();
 

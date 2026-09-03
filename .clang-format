@@ -4,4 +4,7 @@ ContinuationIndentWidth: 4
 TabWidth: 4
 UseTab: Never
 ColumnLimit: 60
+NamespaceIndentation: All
 
+Language: Cpp
+Standard: Latest
