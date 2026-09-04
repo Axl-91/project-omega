@@ -9,11 +9,25 @@ Game::Game() {
                "Project Omega");
     SetTargetFPS(Config::FPS);
 
+    virtualScreen = std::make_unique<VirtualScreen>(
+        Config::SCREEN_WIDTH, Config::SCREEN_HEIGHT);
     currentScreen = std::make_unique<MainMenuScreen>();
 }
 
 void Game::Run() {
     while (!WindowShouldClose()) {
+        if (IsKeyPressed(KEY_F11)) {
+            if (!IsWindowFullscreen()) {
+                int monitor = GetCurrentMonitor();
+                SetWindowSize(GetMonitorWidth(monitor),
+                              GetMonitorHeight(monitor));
+            } else {
+                SetWindowSize(Config::SCREEN_WIDTH,
+                              Config::SCREEN_HEIGHT);
+            }
+            ToggleFullscreen();
+        }
+
         ScreenResult result =
             currentScreen->Update(GetFrameTime());
 
@@ -24,11 +38,14 @@ void Game::Run() {
             currentScreen = std::move(result.nextScreen);
         }
 
-        BeginDrawing();
+        virtualScreen->BeginDrawing();
+
         ClearBackground(RAYWHITE);
         currentScreen->Draw();
-        EndDrawing();
+
+        virtualScreen->EndDrawing();
     }
 
+    virtualScreen.reset();
     CloseWindow();
 }
