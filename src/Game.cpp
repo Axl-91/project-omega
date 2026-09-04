@@ -1,45 +1,34 @@
+#include "Config.hpp"
 #include "Game.hpp"
+#include "GameScreen.hpp"
+#include "MainMenuScreen.hpp"
 #include "raylib.h"
-#include <cmath>
 
-Game::Game()
-    : player(
-          {screenWidth / 2.0f - 30.0f, screenHeight / 4.0f},
-          25.0f, 200.0f, MAROON) {
-    InitWindow(screenWidth, screenHeight, "Project Omega");
-    SetTargetFPS(60);
+Game::Game() {
+    InitWindow(Config::SCREEN_WIDTH, Config::SCREEN_HEIGHT,
+               "Project Omega");
+    SetTargetFPS(Config::FPS);
+
+    currentScreen = std::make_unique<MainMenuScreen>();
 }
 
 void Game::Run() {
     while (!WindowShouldClose()) {
-        Update();
-        Draw();
+        ScreenResult result =
+            currentScreen->Update(GetFrameTime());
+
+        if (result.quit) {
+            break;
+        }
+        if (result.nextScreen) {
+            currentScreen = std::move(result.nextScreen);
+        }
+
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        currentScreen->Draw();
+        EndDrawing();
     }
 
     CloseWindow();
-}
-
-void Game::Update() {
-    player.Update(GetFrameTime(), level);
-}
-
-static void DrawControlsHint() {
-    float pulse = (sinf(GetTime() * 4.0f) + 1.0f) / 2.0f;
-    float alpha = 0.5f + pulse * 0.5f;
-
-    Color textColor = Fade(DARKPURPLE, alpha);
-    DrawText("Use WASD to move", 30, 30, 24, textColor);
-}
-
-void Game::Draw() {
-
-    BeginDrawing();
-
-    ClearBackground(RAYWHITE);
-    level.Draw();
-    player.Draw();
-
-    DrawControlsHint();
-
-    EndDrawing();
 }

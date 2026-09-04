@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Level.hpp"
-#include "Player.hpp"
+#include "GameScreen.hpp"
+#include <memory>
 
 class Game {
   public:
@@ -10,12 +10,5 @@ class Game {
     void Run();
 
   private:
-    static const int screenWidth = 800;
-    static const int screenHeight = 600;
-
-    Player player;
-    Level level;
-
-    void Update();
-    void Draw();
+    std::unique_ptr<GameScreen> currentScreen;
 };
