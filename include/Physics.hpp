@@ -10,4 +10,6 @@ namespace Physics {
     // Epsilon I need for transitions so collision is
     // detected correctly
     constexpr float COLLISION_EPSILON = 0.5f;
+
+    constexpr float COYOTE_TIME = 0.10f;
 } // namespace Physics

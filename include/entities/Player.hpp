@@ -22,9 +22,9 @@ class Player {
 
     float size;
     float speed;
-
     Color color;
 
     bool onGround;
     bool isJumping;
+    float coyoteTimeCounter;
 };

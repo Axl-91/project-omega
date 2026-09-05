@@ -3,10 +3,18 @@
 #include <raylib.h>
 
 Player::Player(Vector2 startPosition, float size,
-               float speed, Color color)
-    : position(startPosition), velocity({0, 0}),
-      onGround(false), size(size), speed(speed),
-      color(color) {}
+               float speed, Color color) {
+    this->position = startPosition;
+
+    velocity = {0, 0};
+    onGround = false;
+    isJumping = false;
+    coyoteTimeCounter = 0.0f;
+
+    this->size = size;
+    this->speed = speed;
+    this->color = color;
+}
 
 void Player::Update(float deltaTime, const Level &level) {
     float distance = speed * deltaTime;
@@ -20,9 +28,19 @@ void Player::Update(float deltaTime, const Level &level) {
                      ? Physics::MAX_FALL_SPEED
                      : velocity.y;
 
-    if (IsKeyPressed(KEY_SPACE) && onGround) {
+    if (onGround) {
+        coyoteTimeCounter = Physics::COYOTE_TIME;
+    } else {
+        coyoteTimeCounter -= deltaTime;
+        if (coyoteTimeCounter < 0.0f)
+            coyoteTimeCounter = 0.0f;
+    }
+    bool canJump = onGround || coyoteTimeCounter > 0.0f;
+
+    if (IsKeyPressed(KEY_SPACE) && canJump) {
         velocity.y = -Physics::JUMP_FORCE;
         isJumping = true;
+        coyoteTimeCounter = 0.0f;
     }
 
     if (IsKeyReleased(KEY_SPACE) && isJumping &&
