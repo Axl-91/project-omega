@@ -9,8 +9,17 @@
 static void DrawControlsHint() {
     float pulse = (sinf(GetTime() * 4.0f) + 1.0f) / 2.0f;
     float alpha = 0.5f + pulse * 0.5f;
-    DrawText("Use WASD to move, SPACE to jump, P to pause",
-             30, 30, 24, Fade(DARKPURPLE, alpha));
+
+    const char *hintsStr =
+        "Use WASD to move, SPACE to jump, P to pause";
+    int hintsSize = 24;
+    int titleWidth = MeasureText(hintsStr, hintsSize);
+
+    int posX = (Config::SCREEN_WIDTH - titleWidth) / 2,
+        posY = 30;
+
+    DrawText(hintsStr, posX, posY, hintsSize,
+             Fade(DARKPURPLE, alpha));
 }
 
 PlayingScreen::PlayingScreen()
