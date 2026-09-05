@@ -24,8 +24,8 @@ void VirtualScreen::EndDrawing() const {
                         -(float)target.texture.height};
 
     // Rectangle where the virtual screen will be drawn
-    // The size will cover the screen resolution,
-    // maintaining the aspect ratio
+    // The size will cover as much of the screen
+    // as possible while maintaining the aspect ratio
     Rectangle dest = GetDestinationRect();
 
     ::BeginDrawing();
