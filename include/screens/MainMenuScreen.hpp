@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GameScreen.hpp"
+#include "../app/GameScreen.hpp"
 
 class MainMenuScreen : public GameScreen {
   public:

@@ -1,6 +1,6 @@
 #include "Config.hpp"
 #include "Physics.hpp"
-#include "RoomManager.hpp"
+#include "world/RoomManager.hpp"
 
 RoomManager::RoomManager() : currentRoomIndex(0) {
     rooms.push_back(Level({

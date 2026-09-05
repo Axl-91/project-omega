@@ -1,4 +1,4 @@
-#include "VirtualScreen.hpp"
+#include "app/VirtualScreen.hpp"
 
 VirtualScreen::VirtualScreen(int virtualWidth,
                              int virtualHeight)

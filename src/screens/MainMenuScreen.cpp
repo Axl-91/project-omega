@@ -1,8 +1,8 @@
 #include "Config.hpp"
-#include "GameScreen.hpp"
-#include "MainMenuScreen.hpp"
-#include "PlayingScreen.hpp"
+#include "app/GameScreen.hpp"
 #include "raylib.h"
+#include "screens/MainMenuScreen.hpp"
+#include "screens/PlayingScreen.hpp"
 
 static const char *OPTIONS[] = {"Start Game", "Exit"};
 static const int OPTION_COUNT = 2;

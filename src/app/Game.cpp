@@ -1,8 +1,8 @@
 #include "Config.hpp"
-#include "Game.hpp"
-#include "GameScreen.hpp"
-#include "MainMenuScreen.hpp"
+#include "app/Game.hpp"
+#include "app/GameScreen.hpp"
 #include "raylib.h"
+#include "screens/MainMenuScreen.hpp"
 
 Game::Game() {
     InitWindow(Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT,

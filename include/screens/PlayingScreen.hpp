@@ -1,8 +1,8 @@
 #pragma once
 
-#include "GameScreen.hpp"
-#include "Player.hpp"
-#include "RoomManager.hpp"
+#include "app/GameScreen.hpp"
+#include "entities/Player.hpp"
+#include "world/RoomManager.hpp"
 
 class PlayingScreen : public GameScreen {
   public:

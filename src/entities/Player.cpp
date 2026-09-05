@@ -1,5 +1,5 @@
 #include "Physics.hpp"
-#include "Player.hpp"
+#include "entities/Player.hpp"
 #include <raylib.h>
 
 Player::Player(Vector2 startPosition, float size,

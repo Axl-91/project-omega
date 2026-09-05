@@ -1,7 +1,7 @@
 #pragma once
 
-#include "GameScreen.hpp"
-#include "PlayingScreen.hpp"
+#include "app/GameScreen.hpp"
+#include "screens/PlayingScreen.hpp"
 #include <memory>
 
 class PauseScreen;

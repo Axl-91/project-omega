@@ -1,9 +1,9 @@
 #include "Config.hpp"
-#include "GameScreen.hpp"
-#include "MainMenuScreen.hpp"
-#include "PauseScreen.hpp"
-#include "PlayingScreen.hpp"
+#include "app/GameScreen.hpp"
 #include "raylib.h"
+#include "screens/MainMenuScreen.hpp"
+#include "screens/PauseScreen.hpp"
+#include "screens/PlayingScreen.hpp"
 #include <cmath>
 
 static void DrawControlsHint() {

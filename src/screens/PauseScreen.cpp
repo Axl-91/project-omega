@@ -1,7 +1,7 @@
 #include "Config.hpp"
-#include "GameScreen.hpp"
-#include "PauseScreen.hpp"
+#include "app/GameScreen.hpp"
 #include "raylib.h"
+#include "screens/PauseScreen.hpp"
 
 PauseScreen::PauseScreen(PlayScreenPtr playingScreen)
     : playingScreen(std::move(playingScreen)) {}

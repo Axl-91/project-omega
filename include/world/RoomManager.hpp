@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Level.hpp"
-#include "Player.hpp"
+#include "entities/Player.hpp"
+#include "world/Level.hpp"
 #include <vector>
 
 class RoomManager {
