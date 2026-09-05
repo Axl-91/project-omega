@@ -12,14 +12,26 @@ sudo dnf install -y raylib raylib-devel gcc-c++ cmake git make
 
 ## Project structure
 
-```
+```text
 project-omega/
-├── CMakeLists.txt   # Build configuration
-├── src/             # Source files
-│   └── main.cpp
-├── include/         # Project headers
-└── assets/          # Sprites, sounds, fonts, etc.
+├── CMakeLists.txt       # Build configuration
+├── src/                 # Source files
+│   ├── main.cpp         
+│   ├── app/             # Core game infrastructure
+│   ├── entities/        # Game entities
+│   ├── screens/         # Game screens
+│   └── world/           # Game world
+├── include/             # Project headers
+│   ├── Config.hpp       # Global configuration
+│   ├── Physics.hpp      # Physics and collision logic
+│   ├── app/
+│   ├── entities/
+│   ├── screens/
+│   └── world/
+├── assets/              # Sprites, sounds, fonts, etc.
+└── README.md
 ```
+
 
 ## Build and run
 
