@@ -43,11 +43,25 @@ make
 
 ## Roadmap
 
-- [ ] Multiple levels (loaded from data, not hardcoded)
+### Done
+ 
+- [x] Movement (A/D) and gravity
+- [x] Jump with variable height
+- [x] Tile-based collision
+- [x] Room-to-room transitions 
+- [x] Screen/state system: main menu, playing
+- [x] Pause on game, state preserved on pause
+- [x] Virtual resolution with automatic scaling + fullscreen toggle
+- [x] Centralized config/physics constants
+
+### Pending (priority order)
+ 
+- [ ] Death & respawn (the core loop of the genre)
+- [ ] Levels loaded from data
+- [ ] Room grid in 2D
 - [ ] One-way platforms
 - [ ] Moving platforms
-- [ ] Hazards / death & respawn
-- [ ] Level goal / completion
-- [ ] Camera that follows the player, larger-than-screen maps
+- [ ] Level goal / completion, level select
 - [ ] Sprites/animation instead of plain rectangles
 - [ ] Sound effects and music
+ 
