@@ -15,7 +15,7 @@ static void DrawControlsHint() {
     int hintsSize = 24;
     int titleWidth = MeasureText(hintsStr, hintsSize);
 
-    int posX = (Config::SCREEN_WIDTH - titleWidth) / 2,
+    int posX = (Config::VIRTUAL_WIDTH - titleWidth) / 2,
         posY = 30;
 
     DrawText(hintsStr, posX, posY, hintsSize,
@@ -23,13 +23,14 @@ static void DrawControlsHint() {
 }
 
 PlayingScreen::PlayingScreen()
-    : player({Config::SCREEN_WIDTH / 2.0f,
-              Config::SCREEN_HEIGHT / 2.0f},
+    : player({Config::VIRTUAL_WIDTH / 2.0f,
+              Config::VIRTUAL_HEIGHT / 2.0f},
              Config::PLAYER_SIZE, Config::PLAYER_SPEED,
              MAROON) {}
 
 ScreenResult PlayingScreen::Update(float deltaTime) {
-    player.Update(deltaTime, level);
+    player.Update(deltaTime, roomManager.GetCurrentLevel());
+    roomManager.CheckRoomTransition(player);
 
     if (IsKeyPressed(KEY_P)) {
         ScreenResult result;
@@ -51,7 +52,7 @@ ScreenResult PlayingScreen::Update(float deltaTime) {
 }
 
 void PlayingScreen::Draw() const {
-    level.Draw();
+    roomManager.GetCurrentLevel().Draw();
     player.Draw();
     DrawControlsHint();
 }

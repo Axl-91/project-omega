@@ -1,8 +1,8 @@
 #pragma once
 
 #include "GameScreen.hpp"
-#include "Level.hpp"
 #include "Player.hpp"
+#include "RoomManager.hpp"
 
 class PlayingScreen : public GameScreen {
   public:
@@ -12,6 +12,6 @@ class PlayingScreen : public GameScreen {
     void Draw() const override;
 
   private:
-    Level level;
+    RoomManager roomManager;
     Player player;
 };

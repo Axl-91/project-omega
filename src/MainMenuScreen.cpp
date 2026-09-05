@@ -36,13 +36,14 @@ void MainMenuScreen::Draw() const {
     const char *title = "PROJECT OMEGA";
     int titleSize = 40;
     int titleWidth = MeasureText(title, titleSize);
-    DrawText(title, (Config::SCREEN_WIDTH - titleWidth) / 2,
-             Config::SCREEN_HEIGHT / 2 - 100, titleSize,
+    DrawText(title,
+             (Config::VIRTUAL_WIDTH - titleWidth) / 2,
+             Config::VIRTUAL_HEIGHT / 2 - 100, titleSize,
              DARKGRAY);
 
     int optionSize = 24;
     int spacing = 40;
-    int startY = Config::SCREEN_HEIGHT / 2;
+    int startY = Config::VIRTUAL_HEIGHT / 2;
 
     for (int i = 0; i < OPTION_COUNT; i++) {
         bool selected = (i == selectedOption);
@@ -54,7 +55,7 @@ void MainMenuScreen::Draw() const {
 
         int labelWidth = MeasureText(label, optionSize);
         DrawText(label,
-                 (Config::SCREEN_WIDTH - labelWidth) / 2,
+                 (Config::VIRTUAL_WIDTH - labelWidth) / 2,
                  startY + i * spacing, optionSize, color);
     }
 }

@@ -5,12 +5,12 @@
 #include "raylib.h"
 
 Game::Game() {
-    InitWindow(Config::SCREEN_WIDTH, Config::SCREEN_HEIGHT,
+    InitWindow(Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT,
                "Project Omega");
     SetTargetFPS(Config::FPS);
 
     virtualScreen = std::make_unique<VirtualScreen>(
-        Config::SCREEN_WIDTH, Config::SCREEN_HEIGHT);
+        Config::VIRTUAL_WIDTH, Config::VIRTUAL_HEIGHT);
     currentScreen = std::make_unique<MainMenuScreen>();
 }
 
@@ -22,8 +22,8 @@ void Game::Run() {
                 SetWindowSize(GetMonitorWidth(monitor),
                               GetMonitorHeight(monitor));
             } else {
-                SetWindowSize(Config::SCREEN_WIDTH,
-                              Config::SCREEN_HEIGHT);
+                SetWindowSize(Config::WINDOW_WIDTH,
+                              Config::WINDOW_HEIGHT);
             }
             ToggleFullscreen();
         }

@@ -18,13 +18,14 @@ ScreenResult PauseScreen::Update(float deltaTime) {
 void PauseScreen::Draw() const {
     playingScreen->Draw();
 
-    DrawRectangle(0, 0, Config::SCREEN_WIDTH,
-                  Config::SCREEN_HEIGHT, Fade(BLACK, 0.5f));
+    DrawRectangle(0, 0, Config::VIRTUAL_WIDTH,
+                  Config::VIRTUAL_HEIGHT,
+                  Fade(BLACK, 0.5f));
 
     const char *text = "PAUSED";
     int size = 40;
     int width = MeasureText(text, size);
-    DrawText(text, (Config::SCREEN_WIDTH - width) / 2,
-             Config::SCREEN_HEIGHT / 2 - size / 2, size,
+    DrawText(text, (Config::VIRTUAL_WIDTH - width) / 2,
+             Config::VIRTUAL_HEIGHT / 2 - size / 2, size,
              RAYWHITE);
 }
