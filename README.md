@@ -54,7 +54,7 @@ make
 - [x] Virtual resolution with automatic scaling + fullscreen toggle
 - [x] Centralized config/physics constants
 
-### Pending (priority order)
+### Pending
  
 - [ ] Death & respawn (the core loop of the genre)
 - [ ] Levels loaded from data
