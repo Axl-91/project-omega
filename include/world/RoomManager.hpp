@@ -2,11 +2,12 @@
 
 #include "entities/Player.hpp"
 #include "world/Level.hpp"
+#include <string>
 #include <vector>
 
 class RoomManager {
   public:
-    RoomManager();
+    explicit RoomManager(const std::string &levelPath);
 
     const Level &GetCurrentLevel() const;
 

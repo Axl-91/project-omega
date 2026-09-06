@@ -1,18 +1,19 @@
 #pragma once
 
 #include <raylib.h>
-#include <string>
 #include <vector>
+
+using tilesVector = std::vector<std::vector<int>>;
 
 class Level {
   public:
     static const int TILE_SIZE = 25;
 
-    Level(const std::vector<std::string> &layout);
+    explicit Level(const tilesVector &tileData);
 
     void Draw() const;
     std::vector<Rectangle> GetSolidTiles() const;
 
   private:
-    std::vector<std::string> tiles;
+    tilesVector tiles;
 };

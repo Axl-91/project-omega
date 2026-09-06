@@ -4,6 +4,7 @@
 #include "screens/MainMenuScreen.hpp"
 #include "screens/PauseScreen.hpp"
 #include "screens/PlayingScreen.hpp"
+#include "world/RoomManager.hpp"
 #include <cmath>
 
 static void DrawControlsHint() {
@@ -22,8 +23,11 @@ static void DrawControlsHint() {
              Fade(DARKPURPLE, alpha));
 }
 
+// TODO: We need another way to read our first level
+// TODO: startingPosition should come from the level
 PlayingScreen::PlayingScreen()
-    : player({Config::VIRTUAL_WIDTH / 2.0f,
+    : roomManager("assets/levels/level1.json"),
+      player({Config::VIRTUAL_WIDTH / 2.0f,
               Config::VIRTUAL_HEIGHT / 2.0f},
              Config::PLAYER_SIZE, Config::PLAYER_SPEED,
              MAROON) {}
