@@ -41,8 +41,8 @@ void MainMenuScreen::Draw() const {
              Config::VIRTUAL_HEIGHT / 2 - 50, titleSize,
              DARKGRAY);
 
-    int optionSize = 14;
-    int spacing = 25;
+    int optionSize = 10;
+    int spacing = 20;
     int startY = Config::VIRTUAL_HEIGHT / 2;
 
     for (int i = 0; i < OPTION_COUNT; i++) {
