@@ -1,3 +1,4 @@
+#include "Config.hpp"
 #include "world/Level.hpp"
 #include "world/TileType.hpp"
 
@@ -9,9 +10,10 @@ void Level::Draw() const {
         for (int col = 0; col < (int)tiles[row].size();
              col++) {
             if (tiles[row][col] == (int)TileType::Solid) {
-                DrawRectangle(col * TILE_SIZE,
-                              row * TILE_SIZE, TILE_SIZE,
-                              TILE_SIZE, DARKGRAY);
+                DrawRectangle(col * Config::TILE_SIZE,
+                              row * Config::TILE_SIZE,
+                              Config::TILE_SIZE,
+                              Config::TILE_SIZE, DARKGRAY);
             }
         }
     }
@@ -24,10 +26,11 @@ std::vector<Rectangle> Level::GetSolidTiles() const {
         for (int col = 0; col < (int)tiles[row].size();
              col++) {
             if (tiles[row][col] == (int)TileType::Solid) {
-                solids.push_back({(float)(col * TILE_SIZE),
-                                  (float)(row * TILE_SIZE),
-                                  (float)TILE_SIZE,
-                                  (float)TILE_SIZE});
+                solids.push_back(
+                    {(float)(col * Config::TILE_SIZE),
+                     (float)(row * Config::TILE_SIZE),
+                     (float)Config::TILE_SIZE,
+                     (float)Config::TILE_SIZE});
             }
         }
     }

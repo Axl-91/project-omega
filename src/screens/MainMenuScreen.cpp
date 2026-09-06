@@ -34,15 +34,15 @@ ScreenResult MainMenuScreen::Update(float deltaTime) {
 
 void MainMenuScreen::Draw() const {
     const char *title = "PROJECT OMEGA";
-    int titleSize = 40;
+    int titleSize = 20;
     int titleWidth = MeasureText(title, titleSize);
     DrawText(title,
              (Config::VIRTUAL_WIDTH - titleWidth) / 2,
-             Config::VIRTUAL_HEIGHT / 2 - 100, titleSize,
+             Config::VIRTUAL_HEIGHT / 2 - 50, titleSize,
              DARKGRAY);
 
-    int optionSize = 24;
-    int spacing = 40;
+    int optionSize = 14;
+    int spacing = 25;
     int startY = Config::VIRTUAL_HEIGHT / 2;
 
     for (int i = 0; i < OPTION_COUNT; i++) {

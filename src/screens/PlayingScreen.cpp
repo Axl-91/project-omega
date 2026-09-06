@@ -13,14 +13,14 @@ static void DrawControlsHint() {
 
     const char *hintsStr =
         "Use WASD to move, SPACE to jump, P to pause";
-    int hintsSize = 24;
+    int hintsSize = 4;
     int titleWidth = MeasureText(hintsStr, hintsSize);
 
     int posX = (Config::VIRTUAL_WIDTH - titleWidth) / 2,
-        posY = 30;
+        posY = 3;
 
     DrawText(hintsStr, posX, posY, hintsSize,
-             Fade(DARKPURPLE, alpha));
+             Fade(WHITE, alpha));
 }
 
 // TODO: We need another way to read our first level
