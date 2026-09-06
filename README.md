@@ -36,10 +36,10 @@ project-omega/
 ## Build and run
 
 ```bash
-mkdir build && cd build
-cmake ..
-make
-./bin/ProjectOmega
+make configure  # Configure CMake
+make build      # Build the project
+make run        # Build if necessary and run the game
+make clean      # Remove build files
 ```
 
 ## Controls
@@ -69,7 +69,7 @@ make
 ### Pending
  
 - [ ] Death & respawn (the core loop of the genre)
-- [ ] Levels loaded from data
+- [x] Levels loaded from data
 - [ ] Room grid in 2D
 - [ ] One-way platforms
 - [ ] Moving platforms
