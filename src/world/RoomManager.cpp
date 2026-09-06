@@ -22,12 +22,12 @@ bool RoomManager::CheckRoomTransition(Player &player) {
                 {1.0f, pos.y - Physics::COLLISION_EPSILON});
             return true;
         }
-    } else if (pos.x + Config::PLAYER_SIZE < 0) {
+    } else if (pos.x + Config::PLAYER_WIDTH < 0) {
         if (currentRoomIndex - 1 >= 0) {
             currentRoomIndex--;
             player.SetPosition(
                 {Config::VIRTUAL_WIDTH -
-                     Config::PLAYER_SIZE - 1.0f,
+                     Config::PLAYER_WIDTH - 1.0f,
                  pos.y - Physics::COLLISION_EPSILON});
             return true;
         }

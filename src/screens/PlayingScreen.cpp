@@ -29,8 +29,7 @@ PlayingScreen::PlayingScreen()
     : roomManager("assets/levels/level1.json"),
       player({Config::VIRTUAL_WIDTH / 2.0f,
               Config::VIRTUAL_HEIGHT / 2.0f},
-             Config::PLAYER_SIZE, Config::PLAYER_SPEED,
-             MAROON) {}
+             Config::PLAYER_SPEED, MAROON) {}
 
 ScreenResult PlayingScreen::Update(float deltaTime) {
     player.Update(deltaTime, roomManager.GetCurrentLevel());

@@ -1,9 +1,10 @@
+#include "Config.hpp"
 #include "Physics.hpp"
 #include "entities/Player.hpp"
 #include <raylib.h>
 
-Player::Player(Vector2 startPosition, float size,
-               float speed, Color color) {
+Player::Player(Vector2 startPosition, float speed,
+               Color color) {
     this->position = startPosition;
 
     velocity = {0, 0};
@@ -11,7 +12,9 @@ Player::Player(Vector2 startPosition, float size,
     isJumping = false;
     coyoteTimeCounter = 0.0f;
 
-    this->size = size;
+    this->width = Config::PLAYER_WIDTH;
+    this->height = Config::PLAYER_HEIGHT;
+
     this->speed = speed;
     this->color = color;
 }
@@ -19,8 +22,8 @@ Player::Player(Vector2 startPosition, float size,
 void Player::Update(float deltaTime, const Level &level) {
     float distance = speed * deltaTime;
     std::vector<Rectangle> solids = level.GetSolidTiles();
-    Rectangle playerRect = {position.x, position.y, size,
-                            size};
+    Rectangle playerRect = {position.x, position.y, width,
+                            height};
 
     velocity.x = 0;
     velocity.y += Physics::GRAVITY * deltaTime;
@@ -62,7 +65,7 @@ void Player::Update(float deltaTime, const Level &level) {
     for (const Rectangle &tile : solids) {
         if (CheckCollisionRecs(playerRect, tile)) {
             if (moveX > 0) {
-                position.x = tile.x - size;
+                position.x = tile.x - width;
             } else if (moveX < 0) {
                 position.x = tile.x + tile.width;
             }
@@ -80,7 +83,7 @@ void Player::Update(float deltaTime, const Level &level) {
     for (const Rectangle &tile : solids) {
         if (CheckCollisionRecs(playerRect, tile)) {
             if (moveY > 0) {
-                position.y = tile.y - size;
+                position.y = tile.y - height;
                 onGround = true;
                 isJumping = false;
             } else if (moveY < 0) {
@@ -93,5 +96,5 @@ void Player::Update(float deltaTime, const Level &level) {
 }
 
 void Player::Draw() const {
-    DrawRectangleV(position, {size, size}, color);
+    DrawRectangleV(position, {width, height}, color);
 }

@@ -23,7 +23,7 @@ void PauseScreen::Draw() const {
                   Fade(BLACK, 0.5f));
 
     const char *text = "PAUSED";
-    int size = 40;
+    int size = 20;
     int width = MeasureText(text, size);
     DrawText(text, (Config::VIRTUAL_WIDTH - width) / 2,
              Config::VIRTUAL_HEIGHT / 2 - size / 2, size,

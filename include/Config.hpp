@@ -16,5 +16,6 @@ namespace Config {
     static const int TILE_SIZE = 16;
 
     constexpr float PLAYER_SPEED = 150.0f;
-    constexpr float PLAYER_SIZE = 16.0f;
+    constexpr float PLAYER_WIDTH = 14.0f;
+    constexpr float PLAYER_HEIGHT = 18.0f;
 } // namespace Config
