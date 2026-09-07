@@ -9,13 +9,13 @@
 static void DrawControlsHint() {
     const char *hintsStr =
         "Use W/D to move, SPACE to jump, P to pause";
-    int hintsSize = 4;
-    int titleWidth = MeasureText(hintsStr, hintsSize);
+    int hintsFontSize = GetFontDefault().baseSize;
+    int titleWidth = MeasureText(hintsStr, hintsFontSize);
 
     int posX = (Config::VIRTUAL_WIDTH - titleWidth) / 2,
-        posY = 3;
+        posY = (Config::TILE_SIZE - hintsFontSize) / 2;
 
-    DrawText(hintsStr, posX, posY, hintsSize, WHITE);
+    DrawText(hintsStr, posX, posY, hintsFontSize, WHITE);
 }
 
 // TODO: We need another way to read our first level
