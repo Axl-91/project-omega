@@ -5,22 +5,17 @@
 #include "screens/PauseScreen.hpp"
 #include "screens/PlayingScreen.hpp"
 #include "world/RoomManager.hpp"
-#include <cmath>
 
 static void DrawControlsHint() {
-    float pulse = (sinf(GetTime() * 4.0f) + 1.0f) / 2.0f;
-    float alpha = 0.5f + pulse * 0.5f;
-
     const char *hintsStr =
-        "Use WASD to move, SPACE to jump, P to pause";
+        "Use W/D to move, SPACE to jump, P to pause";
     int hintsSize = 4;
     int titleWidth = MeasureText(hintsStr, hintsSize);
 
     int posX = (Config::VIRTUAL_WIDTH - titleWidth) / 2,
         posY = 3;
 
-    DrawText(hintsStr, posX, posY, hintsSize,
-             Fade(WHITE, alpha));
+    DrawText(hintsStr, posX, posY, hintsSize, WHITE);
 }
 
 // TODO: We need another way to read our first level
@@ -37,6 +32,10 @@ ScreenResult PlayingScreen::Update(float deltaTime) {
 
     if (IsKeyPressed(KEY_P)) {
         ScreenResult result;
+        // On pause, we move our own state into a new
+        // PlayingScreen instance so it survives after this
+        // object is destroyed, PauseScreen takes ownership
+        // of it and hands it back unchanged when unpausing
         auto movedSelf = std::make_unique<PlayingScreen>(
             std::move(*this));
         result.nextScreen = std::make_unique<PauseScreen>(
