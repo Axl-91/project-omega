@@ -32,6 +32,5 @@ bool RoomManager::CheckRoomTransition(Player &player) {
             return true;
         }
     }
-
     return false;
 }

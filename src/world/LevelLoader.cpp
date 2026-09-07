@@ -5,6 +5,20 @@
 #include <vector>
 
 namespace LevelLoader {
+    /**
+     * @brief Loads all rooms from a level file in JSON
+     * format.
+     *
+     * @param path Path to the JSON file, relative to the
+     * executable's working directory.
+     *
+     * @return The loaded rooms, in the same order they
+     * appear in the file.
+     *
+     * @throws std::runtime_error if the file doesn't exist,
+     * is malformed, or is missing the expected "rooms"
+     * field.
+     */
     std::vector<Level> LoadRooms(const std::string &path) {
         std::ifstream file(path);
         if (!file.is_open()) {
