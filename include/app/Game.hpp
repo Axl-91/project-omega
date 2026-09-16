@@ -8,6 +8,8 @@ class Game {
   public:
     Game();
 
+    void RenderFrame();
+    void HandleFullscreenToggle();
     void Run();
 
   private:

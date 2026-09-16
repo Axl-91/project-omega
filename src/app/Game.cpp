@@ -14,19 +14,32 @@ Game::Game() {
     currentScreen = std::make_unique<MainMenuScreen>();
 }
 
+void Game::RenderFrame() {
+    virtualScreen->BeginDrawing();
+
+    ClearBackground(RAYWHITE);
+    currentScreen->Draw();
+
+    virtualScreen->EndDrawing();
+}
+
+void Game::HandleFullscreenToggle() {
+    if (IsKeyPressed(KEY_F11)) {
+        if (!IsWindowFullscreen()) {
+            int monitor = GetCurrentMonitor();
+            SetWindowSize(GetMonitorWidth(monitor),
+                          GetMonitorHeight(monitor));
+        } else {
+            SetWindowSize(Config::WINDOW_WIDTH,
+                          Config::WINDOW_HEIGHT);
+        }
+        ToggleFullscreen();
+    }
+}
+
 void Game::Run() {
     while (!WindowShouldClose()) {
-        if (IsKeyPressed(KEY_F11)) {
-            if (!IsWindowFullscreen()) {
-                int monitor = GetCurrentMonitor();
-                SetWindowSize(GetMonitorWidth(monitor),
-                              GetMonitorHeight(monitor));
-            } else {
-                SetWindowSize(Config::WINDOW_WIDTH,
-                              Config::WINDOW_HEIGHT);
-            }
-            ToggleFullscreen();
-        }
+        HandleFullscreenToggle();
 
         ScreenResult result =
             currentScreen->Update(GetFrameTime());
@@ -37,15 +50,8 @@ void Game::Run() {
         if (result.nextScreen) {
             currentScreen = std::move(result.nextScreen);
         }
-
-        virtualScreen->BeginDrawing();
-
-        ClearBackground(RAYWHITE);
-        currentScreen->Draw();
-
-        virtualScreen->EndDrawing();
+        RenderFrame();
     }
-
     virtualScreen.reset();
     CloseWindow();
 }
